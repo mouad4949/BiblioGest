@@ -1,0 +1,16 @@
+﻿<Window x:Class="BiblioGest.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Connexion - BiblioGest" Height="406" Width="812" WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock Text="Identifiant" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding Identifiant, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10"/>
+            <TextBlock Text="Mot de passe" FontWeight="Bold" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="PasswordBox" Margin="0,0,0,10"/>
+            <CheckBox Content="Se souvenir de moi" Margin="0,0,0,10"/>
+            <Button Content="Connexion" Command="{Binding ConnexionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                    Width="100" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

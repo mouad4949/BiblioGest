@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="BiblioGest.Views.LivreView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BiblioGest.ViewModels">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Ajouter un livre" Command="{Binding AjouterLivreCommand}" Margin="5"/>
+            <TextBox Width="200" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}" Margin="5" 
+                     ToolTip="Rechercher par titre ou auteur"/>
+            <Button Content="Exporter CSV" Command="{Binding ExporterCsvCommand}" Margin="5"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Livres}" SelectedItem="{Binding SelectedLivre}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ISBN" Binding="{Binding ISBN}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Titre" Binding="{Binding Titre}"/>
+                <DataGridTextColumn Header="Auteur" Binding="{Binding Auteur}"/>
+                <DataGridTextColumn Header="Éditeur" Binding="{Binding Editeur}"/>
+                <DataGridTextColumn Header="Année" Binding="{Binding AnneePublication}"/>
+                <DataGridTextColumn Header="Exemplaires" Binding="{Binding NombreExemplaires}"/>
+                <DataGridTextColumn Header="Catégorie" Binding="{Binding Categorie.Nom}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Ajouter un livre" Command="{Binding AjouterLivreCommand}" Margin="5"/>
+            <TextBox Width="200" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}" Margin="5" ToolTip="Rechercher par titre"/>
+            <TextBox Width="200" Text="{Binding AuteurFilter, UpdateSourceTrigger=PropertyChanged}" Margin="5" ToolTip="Filtrer par auteur"/>
+            <Button Content="Recherche avancée" Command="{Binding RechercheAvanceeCommand}" Margin="5"/>
+            <Button Content="Exporter CSV" Command="{Binding ExporterCsvCommand}" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

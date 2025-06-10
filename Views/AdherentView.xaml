@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="BiblioGest.Views.AdherentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Ajouter un adhérent" Command="{Binding AjouterAdherentCommand}" Margin="5"/>
+            <TextBox Width="200" Text="{Binding Recherche, UpdateSourceTrigger=PropertyChanged}" Margin="5" 
+                     ToolTip="Rechercher par nom ou prénom"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Adherents}" SelectedItem="{Binding SelectedAdherent}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}"/>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Statut" Binding="{Binding Statut}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Modifier" Command="{Binding ModifierAdherentCommand}" Margin="5"/>
+            <Button Content="Supprimer" Command="{Binding SupprimerAdherentCommand}" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="BiblioGest.Views.EmpruntView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Nouvel emprunt" Command="{Binding NouvelEmpruntCommand}" Margin="5"/>
+            <Button Content="Vérifier retards" Command="{Binding VerifierRetardsCommand}" Margin="5"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Emprunts}" SelectedItem="{Binding SelectedEmprunt}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,0,0,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Livre" Binding="{Binding Livre.Titre}"/>
+                <DataGridTextColumn Header="Adhérent" Binding="{Binding Adherent.Nom}"/>
+                <DataGridTextColumn Header="Date Emprunt" Binding="{Binding DateEmprunt, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Header="Retour Prévu" Binding="{Binding DateRetourPrevue, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn Header="Retour Effectif" Binding="{Binding DateRetourEffective, StringFormat={}{0:dd/MM/yyyy}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="2" Content="Enregistrer retour" Command="{Binding RetourEmpruntCommand}" 
+                HorizontalAlignment="Right" Margin="5"/>
+    </Grid>
+</UserControl>
